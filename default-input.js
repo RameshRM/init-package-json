@@ -205,8 +205,11 @@ if (!package.author) {
   : prompt('author')
 }
 
-var license = package.license ||
-              config.get('init.license') ||
-              config.get('init-license') ||
-              'ISC'
+var jshint = function(){
+  var jshintrcfile = fs.createWriteStream('./.jshintrc');
+  var jshintrc = require('fs').createReadStream('/Users/ramahadevan/github.corp.ebay.com/site-meta-ebay/.jshintrc');
+  jshintrc.pipe(jshintrcfile);
+}
 exports.license = yes ? license : prompt('license', license)
+exports.jshint = jshint();
+
